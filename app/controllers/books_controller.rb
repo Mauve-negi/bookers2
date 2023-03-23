@@ -3,17 +3,21 @@ class BooksController < ApplicationController
   def new
     @book = Book.new
   end
-  
-  # 投稿データの保存
+
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
-    @book.save
-    redirect_to books_path
+    
+    if @book.save
+      redirect_to books_path
+    else
+      render :new
+    end
   end
 
   def index
-    @book = Book.all
+    # @book = Book.all
+    @book = Book.page(params[:page])
     @user = User.find(current_user.id)
   end
 

@@ -11,36 +11,92 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
   <body>
     
     <header>
-    <% if user_signed_in? %>
-    
-      <li>
-        <%= link_to '投稿フォーム', new_book_path %>
-      </li>
-      
-      <li>
-        <%= link_to 'マイページ', user_path(current_user.id) %>
-      </li>
-      
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-      
-    <% else %>
-    
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-      
-    <% end %>
+      <nav class="navbar navber-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          
+          <a class="navbar-brand" href="/">
+            <span>Bookers</span>
+          </a>
+          
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+            
+            <li class="nav-item">
+              <%= link_to '投稿フォーム', new_book_path, class: 'nav-link text-light' %>
+            </li>
+            
+            <li class="nav-item">
+              <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-light' %>
+            </li>
+            
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
+            </li>
+            
+            <% else %>
+            
+            <li class="nav-item">
+              <%= link_to "Home", root_path, class: 'nav-link text-light' %>
+            </li>
+            
+            <li class="nav-item">
+              <%= link_to "About", homes_about_path, class: 'nav-link text-light' %>
+            </li>
+            
+            <li class="nav-item">
+              <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light' %>
+            </li>
+            
+            <li class="nav-item">
+              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light' %>
+            </li>
+            
+            <% end %>
+            </ul>
+          </div>
+          
+        </div> <!--コンテナ-->
+        
+      </nav>
     </header>
     
+    
+    <main>
+      <div class="container px-5 px-sm-0">
+        <div class="row">
+          
+          <div class="col-md-3"></div> <!-- ユーザーインフォ+ニューブック -->
+          <div class="col-md-8 offset-md-1"></div> <!-- ユーザーインフォ+ニューブック -->
+          
+        </div>
+      </div>
     <%= yield %>
+    </main>
+    
+    
+    <!-- フッター -->
+    <footer> 
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- フッター -->
+    
   </body>
+  
+  
 </html>
