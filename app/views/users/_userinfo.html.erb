@@ -28,7 +28,7 @@
 
 
 <% if book.errors.any? %>
-  <%= book.errors.count %>件のエラーが発生しました
+  <%= book.errors.count %>errors prohibited this book from being saved:
   <ul>
     <% book.errors.full_messages.each do |message| %>
       <li><%= message %></li>
@@ -36,10 +36,10 @@
   </ul>
 <% end %>
 
-<%= form_with model: book do |f| %>
-  <a>Title</a>
+<%= form_with model: Book.new do |f| %>
+  <p>Title</p>
     <%= f.text_field :title %>
-  <a>Opinion</a>
+  <p>Opinion</p>
     <%= f.text_area :body %>
   <%= f.submit 'CreateBook' %>
 <% end %>
