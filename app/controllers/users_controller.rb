@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def show
     # @book = Book.all
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
     # @books = @user.books
     @books = @user.books.page(params[:page])
     
@@ -21,6 +21,12 @@ class UsersController < ApplicationController
   def index
     # @user = User.find(params[:id])
     @user = User.find(current_user.id)
+    @books = @user.books.page(params[:page])
+  end
+  
+  def list
+    @user = User.find(current_user.id)
+    @users = User.all
     @books = Book.page(params[:page])
   end
 

@@ -31,11 +31,11 @@
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
               
-              <%= link_to user_path(current_user.id) do %>
+              <%= link_to users_path(current_user.id) do %>
                 <i class="fas fa-home" style="color: #e3e3e3;"></i> Home
               <% end %>
               
-              <%= link_to users_path do %>
+              <%= link_to '/users/list' do %>
                 <i class="fas fa-users" style="color: #e3e3e3;"></i> Users
               <% end %>
               

@@ -10,11 +10,11 @@
   </thead>
 
   <tbody>
-    <% @user.each do |user| %>
+    <% ulist.each do |ulist| %>
       <tr>
-        <td><%= image_tag book.user.get_profile_image(100,100) %></td>
-        <td><%= user.name %></td>
-        <td><%= link_to 'Show', user_path(current_user) %></td>
+        <td><%= image_tag ulist.get_profile_image(100,100) %></td>
+        <td><%= ulist.name %></td>
+        <td><%= link_to 'Show', user_path(ulist) %></td>
       </tr>
     <% end %>
   </tbody>
