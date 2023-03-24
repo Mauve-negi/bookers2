@@ -30,36 +30,40 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
+              
+              <%= link_to user_path(current_user.id) do %>
+                <i class="fas fa-home" style="color: #e3e3e3;"></i> Home
+              <% end %>
+              
+              <%= link_to users_path do %>
+                <i class="fas fa-users" style="color: #e3e3e3;"></i> Users
+              <% end %>
+              
+              <%= link_to books_path do %>
+                <i class="fas fa-book-open" style="color: #e3e3e3;"></i> books
+              <% end %>
             
-            <li class="nav-item">
-              <%= link_to '投稿フォーム', new_book_path, class: 'nav-link text-light' %>
-            </li>
-            
-            <li class="nav-item">
-              <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-light' %>
-            </li>
-            
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
-            </li>
-            
+              <%= link_to destroy_user_session_path,method: :delete do %>
+                <i class="fas fa-sign-out-alt" style="color: #e3e3e3;"></i> Log out
+              <% end %>
+
             <% else %>
-            
-            <li class="nav-item">
-              <%= link_to "Home", root_path, class: 'nav-link text-light' %>
-            </li>
-            
-            <li class="nav-item">
-              <%= link_to "About", homes_about_path, class: 'nav-link text-light' %>
-            </li>
-            
-            <li class="nav-item">
-              <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light' %>
-            </li>
-            
-            <li class="nav-item">
-              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light' %>
-            </li>
+
+              <%= link_to root_path do %>
+                <i class="fas fa-home" style="color: #e3e3e3;"></i> Home
+              <% end %>
+              
+              <%= link_to homes_about_path do %>
+                <i class="fas fa-link" style="color: #e3e3e3;"></i> About
+              <% end %>
+              
+              <%= link_to new_user_registration_path do %>
+                <i class="fas fa-user-plus" style="color: #e3e3e3;"></i> Sign up
+              <% end %>
+              
+              <%= link_to new_user_session_path do %>
+                <i class="fas fa-sign-in-alt" style="color: #e3e3e3;"></i> Log in
+              <% end %>
             
             <% end %>
             </ul>
@@ -72,14 +76,7 @@
     
     
     <main>
-      <div class="container px-5 px-sm-0">
-        <div class="row">
-          
-          <div class="col-md-3"></div> <!-- ユーザーインフォ+ニューブック -->
-          <div class="col-md-8 offset-md-1"></div> <!-- ユーザーインフォ+ニューブック -->
-          
-        </div>
-      </div>
+      <p id="notice"></p>
     <%= yield %>
     </main>
     

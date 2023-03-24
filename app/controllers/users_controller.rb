@@ -17,7 +17,12 @@ class UsersController < ApplicationController
     @user.update(user_params)
     redirect_to user_path(@user.id)
   end
-
+  
+  def index
+    # @user = User.find(params[:id])
+    @user = User.find(current_user.id)
+    @books = Book.page(params[:page])
+  end
 
   private
 
