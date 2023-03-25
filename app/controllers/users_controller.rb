@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     # @books = @user.books
     @books = @user.books.page(params[:page])
-    
+    @book = Book.new
   end
   
   def edit
@@ -14,14 +14,21 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      redirect_to user_path(@user.id)
+      flash[:notice] = "You have updated user successfully."
+    else
+      @user = User.all
+      render :edit
+    end
   end
-  
+
   def index
     # @user = User.find(params[:id])
     @user = User.find(current_user.id)
+    @users = User.all
     @books = @user.books.page(params[:page])
+    @book = Book.new
   end
   
   def list
@@ -33,7 +40,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:name, :profile_image, :introduction)
   end
   
   def book_params

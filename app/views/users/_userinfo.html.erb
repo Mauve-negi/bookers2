@@ -2,7 +2,7 @@
 
 <table class="table">
   <tbody>
-    <tr></tr>
+    <tr><%= image_tag user.get_profile_image(100,100) %></tr>
     <tr>
       <th>name</th>
       <th> <%= user.name %> </th>
@@ -19,7 +19,7 @@
     <i class="fas fa-user-cog" style="color: #e3e3e3;"></i> user edit
   <% end %> 
 <% else %>
-  <%= button_to users_path(current_user),class: "btn btn-outline-secondary btn-block", method: :get  do %>
+  <%= button_to user_path(current_user.id),class: "btn btn-outline-secondary btn-block", method: :get  do %>
     <i class="fas fa-user-cog" style="color: #e3e3e3;"></i> user edit
   <% end %> 
 <% end %>

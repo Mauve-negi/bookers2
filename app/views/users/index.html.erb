@@ -6,9 +6,9 @@
       <%= render 'users/userinfo', user: @user, book: @book %>
     </div>
     
-    <!-- 自分の -->
+    <!-- ユーザー -->
     <div class="col-md-8 offset-md-1">
-      <%= render 'books/booklist', user: @user, book: @book %>
+      <%= render 'users/userlist', user: @user, ulist: @users, book: @book %>
     </div>
     
   </div>
